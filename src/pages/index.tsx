@@ -12,50 +12,9 @@ export default function Home() {
   return (
     <>
       <TopNav />
-      <Box
-        bgImage="url('/img/stars.png')"
-        bgSize="cover"
-      >
-        <Box pos="relative" maxW="1160px" mx="auto" px={["6", "8"]} py={{base: "6", md: "80px"}} d="flex" justifyContent="space-between">
-          <Box>
-            <Text
-              as="h1"
-              fontWeight={{base: "bold", md: "medium"}}
-              fontSize={{base: "xl", md: "3xl"}}
-              color="gray.50"
-            >
-              5 Continentes,<br/>infinitas possibilidades.
-            </Text>
 
-            <Text
-              color="gray.300"
-              mt={{base: "2", md: "5"}}
-              maxW="520"
-            >
-              Chegou a hora de tirar do papel a viagem que você sempre sonhou.
-            </Text>
-          </Box>
-
-          <Image pos="absolute" w="410px" right="16px" src="/img/airplane.svg" d={{base: "none", lg: "block"}}/>
-        </Box>
-      </Box>
-
-      <SimpleGrid
-        w="100%"
-        maxW="1160"
-        mx="auto"
-        mt={{base: "9", md: "100px"}}
-        mb={{base: "9", md: "80px"}}
-        px={["6", "8"]}
-        gap="8"
-        minChildWidth={135}
-      >
-        <Item src="/img/cocktail.svg">vida noturna</Item>
-        <Item src="/img/surf.svg">praia</Item>
-        <Item src="/img/building.svg">moderno</Item>
-        <Item src="/img/museum.svg">clássico</Item>
-        <Item src="/img/earth.svg">e mais...</Item>
-      </SimpleGrid>
+      <Header />
+      <Activities />
 
       <Divider w="60px" h="2px" mx="auto" bg="gray.700"/>
 
@@ -75,6 +34,65 @@ export default function Home() {
     </>
   )
 }
+
+const Header = () => (
+  <Box
+    bgImage="url('/img/stars.png')"
+    bgSize="cover"
+  >
+    <Flex pos="relative" maxW="1160px" mx="auto" px={["6", "8"]} py={{base: "6", md: "80px"}} justify="space-between">
+      <Box>
+        <Text
+          as="h1"
+          fontWeight={{base: "bold", md: "medium"}}
+          fontSize={{base: "xl", md: "3xl"}}
+          color="gray.50"
+        >
+          5 Continentes,<br/>infinitas possibilidades.
+        </Text>
+
+        <Text
+          color="gray.300"
+          mt={{base: "2", md: "5"}}
+          maxW="520"
+        >
+          Chegou a hora de tirar do papel a viagem que você sempre sonhou.
+        </Text>
+      </Box>
+
+      <Image pos="absolute" w="410px" right="16px" src="/img/airplane.svg" d={{base: "none", lg: "block"}}/>
+    </Flex>
+  </Box>
+)
+
+const Activities = () => (
+  <SimpleGrid
+    w="100%"
+    maxW="1160"
+    mx="auto"
+    mt={{base: "9", md: "100px"}}
+    mb={{base: "9", md: "80px"}}
+    px={["6", "8"]}
+    gap="8"
+    minChildWidth={135}
+  >
+    <Activity src="/img/cocktail.svg">vida noturna</Activity>
+    <Activity src="/img/surf.svg">praia</Activity>
+    <Activity src="/img/building.svg">moderno</Activity>
+    <Activity src="/img/museum.svg">clássico</Activity>
+    <Activity src="/img/earth.svg">e mais...</Activity>
+  </SimpleGrid>
+)
+interface ActivityProps {
+  src: string;
+}
+
+const Activity: React.FC<ActivityProps> = ({src, children}) => (
+  <Flex flexDir="column" align="center">
+    <Image w={["60px", "85px"]} src={src} alt=""/>
+    <Text mt="4" fontWeight="bold" color="gray.700" fontSize={["large", "xl"]}>{children}</Text>
+  </Flex>
+)
 
 const Slide = () => (
   <Box
@@ -170,13 +188,3 @@ const SlideItem = () => (
   </Box>
 )
 
-interface ItemProps {
-  src: string;
-}
-
-const Item: React.FC<ItemProps> = ({src, children}) => (
-  <Flex flexDir="column" align="center">
-    <Image w={["60px", "85px"]} src={src} alt=""/>
-    <Text mt="4" fontWeight="bold" color="gray.700" fontSize={["large", "xl"]}>{children}</Text>
-  </Flex>
-)
