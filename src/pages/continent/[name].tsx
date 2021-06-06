@@ -1,7 +1,9 @@
 import { Image } from '@chakra-ui/image';
-import { Box, Grid, Heading, SimpleGrid, Text } from '@chakra-ui/layout';
+import { Box, Flex, Grid, Heading, Text } from '@chakra-ui/layout';
+import { Icon, Tooltip } from '@chakra-ui/react';
 import TopNav from '@components/TopNav';
 import React from 'react';
+import { RiInformationLine } from 'react-icons/ri';
 
 // import { Container } from './styles';
 
@@ -69,7 +71,7 @@ const Continent: React.FC = () => {
         >
           <Info number="50" name="paises" />
           <Info number="60" name="línguas" />
-          <Info number="24" name="cidades +100" />
+          <Info number="24" name="cidades +100" info="Cidades +100 são cidades deste continente que estão entre as 100 mais visitadas do mundo"/>
         </Box>
       </Box>
 
@@ -93,26 +95,45 @@ const Continent: React.FC = () => {
 interface InfoProps {
   number: string;
   name: string;
+  info?: string;
 }
 
-const Info: React.FC<InfoProps> = ({number, name}) => (
-  <Box textAlign={["start", "start", "center"]}>
-    <Text
-      color="brand.500"
-      fontSize={["x-large", "x-large", "4xl"]}
-      fontWeight="bold"
-    >
-      {number}
-    </Text>
+const Info: React.FC<InfoProps> = ({number, name, info}) => (
+  <Flex dir="row">  
+    <Box textAlign={["start", "start", "center"]}>
+      <Text
+        color="brand.500"
+        fontSize={["x-large", "x-large", "4xl"]}
+        fontWeight="bold"
+      >
+        {number}
+      </Text>
 
-    <Text
-      color="gray.700"
-      fontSize={["large", "large", "larger"]}
-      fontWeight={['normal', 'normal', 'bold']}
-    >
-      {name}
-    </Text>
-  </Box>
+      <Text
+        color="gray.700"
+        fontSize={["large", "large", "larger"]}
+        fontWeight={['normal', 'normal', 'bold']}
+      >
+        {name}
+      </Text>
+    </Box>
+
+    {info && (
+      <Tooltip
+        label={info}
+        aria-label="Tooltip"
+        placement="top"
+        hasArrow
+        arrowSize={10}
+        bgColor="gray.700"
+        textAlign="center"
+      >
+        <Box as="span" ml="1" mt={{base: "36px", md: "53px"}}>
+          <Icon as={RiInformationLine} color="gray.500" opacity="0.5"/>
+        </Box>
+      </Tooltip>
+    )}
+  </Flex>
 )
 
 const City: React.FC = () => (
