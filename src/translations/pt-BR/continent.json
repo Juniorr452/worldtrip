@@ -1,0 +1,11 @@
+{
+  "Continent": {
+    "countries": "países",
+    "languages": "línguas",
+    "cities+100": "cidades +100",
+    "cities+100_info": "Cidades +100 são cidades deste continente que estão entre as 100 mais visitadas do mundo"
+  },
+  "Cities": {
+    "cities+100": "Cidades +100"
+  }
+}

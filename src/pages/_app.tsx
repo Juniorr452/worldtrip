@@ -1,3 +1,4 @@
+import { NextIntlProvider } from "next-intl";
 import { ChakraProvider } from "@chakra-ui/react"
 import SwiperCore, { Navigation, Pagination, A11y } from 'swiper';
 
@@ -12,7 +13,9 @@ SwiperCore.use([Navigation, Pagination, A11y]);
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+      <NextIntlProvider messages={pageProps.messages}>
+        <Component {...pageProps} />
+      </NextIntlProvider>
     </ChakraProvider>
   )
 }

@@ -1,0 +1,40 @@
+{
+  "Header": {
+    "title_p1": "5 Continents,",
+    "title_p2": "des possibilités infinies.",
+    "description": "Le moment est venu de concrétiser le voyage dont vous avez toujours rêvé."
+  },
+  "Activity": {
+    "nightlife": "vie nocturne",
+    "beach": "plage",
+    "modern": "moderne",
+    "classic": "classique",
+    "andmore": "et plus encore..."
+  },
+  "Home": {
+    "calling": "On y va?",
+    "choosecontinent": "Choisissez ensuite votre continent"
+  },
+  "Slider": {
+    "europe": {
+      "name": "Europe",
+      "description": "Le vieux continent"
+    },
+    "america": {
+      "name": "Amérique",
+      "description": "Le nouveau monde"
+    },
+    "africa": {
+      "name": "Afrique",
+      "description": "Le berceau de l'humanité et de la connaissance"
+    },
+    "asia": {
+      "name": "Asie",
+      "description": "Découvrez les cultures anciennes"
+    },
+    "oceania": {
+      "name": "Océanie",
+      "description": "Le continent isolé"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "Continent": {
+    "countries": "countries",
+    "languages": "languages",
+    "cities+100": "cities +100",
+    "cities+100_info": "Cities +100 are the most 100 visited ones in the world that you can find on this continent"
+  },
+  "Cities": {
+    "cities+100": "Cities +100"
+  }
+}

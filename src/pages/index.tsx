@@ -2,13 +2,17 @@
 import { Image } from "@chakra-ui/image";
 import { Box, Divider, Flex, SimpleGrid, Text, Link } from "@chakra-ui/layout";
 import TopNav from "@components/TopNav";
+import { GetStaticPropsContext } from "next";
 import NextLink from 'next/link';
 
 import { theme } from "src/theme";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useTranslations } from "use-intl";
 
 export default function Home() {
+  const t = useTranslations('Home');
+
   return (
     <>
       <TopNav />
@@ -27,7 +31,9 @@ export default function Home() {
         mt={{base: "6", md: 14}}
         mb={{base: "5", md: 14}}
       >
-        Vamos nessa?<br/>Então escolha seu continente
+        {t('calling')}
+        <br />
+        {t('choosecontinent')}
       </Text>
 
       <Slide />
@@ -35,54 +41,72 @@ export default function Home() {
   )
 }
 
-const Header = () => (
-  <Box
-    bgImage="url('/img/stars.png')"
-    bgSize="cover"
-  >
-    <Flex pos="relative" maxW="1160px" mx="auto" px={["6", "8"]} py={{base: "6", md: "80px"}} justify="space-between">
-      <Box>
-        <Text
-          as="h1"
-          fontWeight={{base: "bold", md: "medium"}}
-          fontSize={{base: "xl", md: "3xl"}}
-          color="gray.50"
-        >
-          5 Continentes,<br/>infinitas possibilidades.
-        </Text>
+export function getStaticProps({locale}: GetStaticPropsContext) {
+  return {
+    props: {
+      messages: require(`src/translations/${locale}/home.json`)
+    }
+  }
+}
 
-        <Text
-          color="gray.300"
-          mt={{base: "2", md: "5"}}
-          maxW="520"
-        >
-          Chegou a hora de tirar do papel a viagem que você sempre sonhou.
-        </Text>
-      </Box>
+const Header = () => {
+  const t = useTranslations('Header');
+  
+  return (
+    <Box
+      bgImage="url('/img/stars.png')"
+      bgSize="cover"
+    >
+      <Flex pos="relative" maxW="1160px" mx="auto" px={["6", "8"]} py={{base: "6", md: "80px"}} justify="space-between">
+        <Box>
+          <Text
+            as="h1"
+            fontWeight={{base: "bold", md: "medium"}}
+            fontSize={{base: "xl", md: "3xl"}}
+            color="gray.50"
+          >
+            {t('title_p1')}
+            <br />
+            {t('title_p2')}
+          </Text>
+  
+          <Text
+            color="gray.300"
+            mt={{base: "2", md: "5"}}
+            maxW="520"
+          >
+            {t('description')}
+          </Text>
+        </Box>
+  
+        <Image pos="absolute" w="410px" right="16px" src="/img/airplane.svg" d={{base: "none", lg: "block"}}/>
+      </Flex>
+    </Box>
+  )
+}
 
-      <Image pos="absolute" w="410px" right="16px" src="/img/airplane.svg" d={{base: "none", lg: "block"}}/>
-    </Flex>
-  </Box>
-)
+const Activities = () => {
+  const t = useTranslations('Activity');
 
-const Activities = () => (
-  <SimpleGrid
-    w="100%"
-    maxW="1160"
-    mx="auto"
-    mt={{base: "9", md: "100px"}}
-    mb={{base: "9", md: "80px"}}
-    px={["6", "8"]}
-    gap="8"
-    minChildWidth={135}
-  >
-    <Activity src="/img/cocktail.svg">vida noturna</Activity>
-    <Activity src="/img/surf.svg">praia</Activity>
-    <Activity src="/img/building.svg">moderno</Activity>
-    <Activity src="/img/museum.svg">clássico</Activity>
-    <Activity src="/img/earth.svg">e mais...</Activity>
-  </SimpleGrid>
-)
+  return (
+    <SimpleGrid
+      w="100%"
+      maxW="1160"
+      mx="auto"
+      mt={{base: "9", md: "100px"}}
+      mb={{base: "9", md: "80px"}}
+      px={["6", "8"]}
+      gap="8"
+      minChildWidth={135}
+    >
+      <Activity src="/img/cocktail.svg">{t('nightlife')}</Activity>
+      <Activity src="/img/surf.svg">{t('beach')}</Activity>
+      <Activity src="/img/building.svg">{t('modern')}</Activity>
+      <Activity src="/img/museum.svg">{t('classic')}</Activity>
+      <Activity src="/img/earth.svg">{t('andmore')}.</Activity>
+    </SimpleGrid>
+  )
+}
 interface ActivityProps {
   src: string;
 }
@@ -94,48 +118,52 @@ const Activity: React.FC<ActivityProps> = ({src, children}) => (
   </Flex>
 )
 
-const Slide = () => (
-  <Box
-    maxW="1160px"
-    mx="auto"
-    mb="8"
-    sx={{
-      ".swiper-container": {
-        "--swiper-navigation-color": theme.colors.brand[500],
-        "--swiper-pagination-color": theme.colors.brand[500],
-        "--swiper-navigation-size": "32px",
-      },
+const Slide = () => {
+  const t = useTranslations('Slider');
 
-      ".swiper-button-next": {
-        right: {base: "32px", md: "64px"}
-      },
-
-      ".swiper-button-prev": {
-        left: {base: "32px", md: "64px"}
-      },
-
-      ".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)": {
-        background: theme.colors.gray[300],
-      }
-    }}
-  >
-    <Swiper
-      navigation
-      pagination={{ clickable: true }}
-      color="brand.500"
+  return (
+    <Box
+      maxW="1160px"
+      mx="auto"
+      mb="8"
+      sx={{
+        ".swiper-container": {
+          "--swiper-navigation-color": theme.colors.brand[500],
+          "--swiper-pagination-color": theme.colors.brand[500],
+          "--swiper-navigation-size": "32px",
+        },
+  
+        ".swiper-button-next": {
+          right: {base: "32px", md: "64px"}
+        },
+  
+        ".swiper-button-prev": {
+          left: {base: "32px", md: "64px"}
+        },
+  
+        ".swiper-pagination-bullet:not(.swiper-pagination-bullet-active)": {
+          background: theme.colors.gray[300],
+        }
+      }}
     >
-      <SwiperSlide>
-        <SlideItem/>
-      </SwiperSlide>
-      <SwiperSlide>
-        <SlideItem/>
-      </SwiperSlide>
-      <SwiperSlide>
-        <SlideItem/>
-      </SwiperSlide>
-    </Swiper>
-  </Box>
-)
+      <Swiper
+        navigation
+        pagination={{ clickable: true }}
+        color="brand.500"
+      >
+        <SwiperSlide>
+          <SlideItem/>
+        </SwiperSlide>
+        <SwiperSlide>
+          <SlideItem/>
+        </SwiperSlide>
+        <SwiperSlide>
+          <SlideItem/>
+        </SwiperSlide>
+      </Swiper>
+    </Box>
+  )
+}
 
 const SlideItem = () => (
   <Box

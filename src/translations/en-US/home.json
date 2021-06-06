@@ -1,0 +1,40 @@
+{
+  "Header": {
+    "title_p1": "5 Continents,",
+    "title_p2": "endless possibilities.",
+    "description": "It's time to pack your bags and get ready for your next travel."
+  },
+  "Activity": {
+    "nightlife": "nightlife",
+    "beach": "beach",
+    "modern": "modern",
+    "classic": "classic",
+    "andmore": "and much more..."
+  },
+  "Home": {
+    "calling": "Sounds good?",
+    "choosecontinent": "Let's choose your next destination"
+  },
+  "Slider": {
+    "europe": {
+      "name": "Europe",
+      "description": "The old continent"
+    },
+    "america": {
+      "name": "America",
+      "description": "The new world"
+    },
+    "africa": {
+      "name": "Africa",
+      "description": "The cradle of humanity and knowledge"
+    },
+    "asia": {
+      "name": "Asia",
+      "description": "Discover ancient cultures"
+    },
+    "oceania": {
+      "name": "Oceania",
+      "description": "The isolated continent"
+    }
+  }
+}

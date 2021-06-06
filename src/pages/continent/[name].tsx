@@ -2,10 +2,14 @@ import { Image } from '@chakra-ui/image';
 import { Box, Flex, Grid, Heading, Text } from '@chakra-ui/layout';
 import { Icon, Tooltip } from '@chakra-ui/react';
 import TopNav from '@components/TopNav';
+import { GetStaticPathsResult, GetStaticPropsContext } from 'next';
 import React from 'react';
 import { RiInformationLine } from 'react-icons/ri';
+import { useTranslations } from 'use-intl';
 
 const Continent: React.FC = () => {
+  const t = useTranslations('Continent');
+
   return (
     <>
       <TopNav url="/"/>
@@ -33,15 +37,30 @@ const Continent: React.FC = () => {
           ml={{base: "auto", lg: "16"}}
           justify="space-between"
         >
-          <Info number="50" name="paises" />
-          <Info number="60" name="línguas" />
-          <Info number="24" name="cidades +100" info="Cidades +100 são cidades deste continente que estão entre as 100 mais visitadas do mundo"/>
+          <Info number="50" name={t('countries') as string} />
+          <Info number="60" name={t('languages') as string} />
+          <Info number="24" name={t('cities+100') as string} info={t('cities+100_info') as string}/>
         </Flex>
       </Flex>
 
       <Cities />
     </>
   )
+}
+
+export function getStaticPaths(): GetStaticPathsResult {
+  return {
+    paths: [],
+    fallback: 'blocking'
+  }
+}
+
+export function getStaticProps({locale}: GetStaticPropsContext) {
+  return {
+    props: {
+      messages: require(`src/translations/${locale}/continent.json`)
+    }
+  }
 }
 
 const Header = () => (
@@ -125,21 +144,25 @@ const Info: React.FC<InfoProps> = ({number, name, info}) => (
   </Flex>
 )
 
-const Cities = () => (
-  <Box mt={{base: "6", lg: "20"}} mb={{base: "10", md: "20"}} mx="auto" px={["6", "8"]} maxW="1160">
-    <Text as="h2" fontSize="2xl" color="gray.500" fontWeight="medium">Cidades +100</Text>
+const Cities = () => {
+  const t = useTranslations('Cities');
 
-    <Grid templateColumns="repeat(auto-fit, minmax(256px, 1fr))" gap="5" mt="5">
-      <City />
-      <City />
-      <City />
-      <City />
-      <City />
-      <City />
-      <City />
-    </Grid>
-  </Box>
-)
+  return (
+    <Box mt={{base: "6", lg: "20"}} mb={{base: "10", md: "20"}} mx="auto" px={["6", "8"]} maxW="1160">
+      <Text as="h2" fontSize="2xl" color="gray.500" fontWeight="medium">{t('cities+100')}</Text>
+  
+      <Grid templateColumns="repeat(auto-fit, minmax(256px, 1fr))" gap="5" mt="5">
+        <City />
+        <City />
+        <City />
+        <City />
+        <City />
+        <City />
+        <City />
+      </Grid>
+    </Box>
+  )
+}
 
 const City: React.FC = () => (
   <Box maxW="256px" mx="auto">

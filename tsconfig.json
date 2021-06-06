@@ -5,6 +5,7 @@
     "paths": {
       "@styles/*": ["src/styles/*"],
       "@components/*": ["src/components/*"],
+      "@translations/*": ["src/translations/*"],
     },
     "lib": [
       "dom",
