@@ -10,6 +10,7 @@ import { IndexHeader } from "@components/pages/index/IndexHeader";
 import { IndexActivities } from "@components/pages/index/IndexActivities";
 import { IndexSlide } from "@components/pages/index/IndexSlider";
 
+import { continentsData } from '../continents';
 interface Continent {
   id: string;
   imageURL: string;
@@ -53,8 +54,10 @@ export default function Home({ continents }: HomeProps) {
 }
 
 export async function getStaticProps({locale}: GetStaticPropsContext) {
-  const response = await fetch(`${process.env.API_URL}/continent/`);
-  const continents = await response.json();
+  const continents = Object.entries(continentsData).map(([id, continent]) => ({
+    id,
+    imageURL: continent.imageURL
+  }));
 
   return {
     props: {

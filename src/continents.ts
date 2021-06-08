@@ -1,4 +1,4 @@
-export const continents = {
+export const continentsData = {
   europe: {
     imageURL: '/img/cities/london2.jpg',
     info: {

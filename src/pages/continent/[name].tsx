@@ -8,6 +8,8 @@ import TopNav from '@components/TopNav';
 import { ContinentHeader } from '@components/pages/continent/ContinentHeader';
 import { ContinentInfo } from '@components/pages/continent/ContinentInfo';
 import { ContinentCities } from '@components/pages/continent/ContinentCities';
+
+import { continentsData } from "src/continents";
 interface City {
   id: string;
   name: string;
@@ -95,8 +97,19 @@ export function getStaticPaths({ locales }: GetStaticPathsContext): GetStaticPat
 export async function getStaticProps({ params, locale }: GetStaticPropsContext) {
   const { name } = params;
 
-  const response = await fetch(`${process.env.API_URL}/continent/${name}?locale=${locale}`);
-  const continent = await response.json();
+  const t = require(`src/translations/${locale}/${name}.json`);
+
+  const continentData = continentsData[name as string];
+
+  const continent = {
+    ...continentData,
+    name: t['name'],
+    description: t['description'],
+    cities: continentData.cities.map(city => ({
+      ...city,
+      ...t['cities'][city.id]
+    }))
+  };
 
   return {
     props: {
