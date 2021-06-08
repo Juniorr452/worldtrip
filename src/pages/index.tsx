@@ -4,6 +4,7 @@ import { Box, Divider, Flex, SimpleGrid, Text, Link } from "@chakra-ui/layout";
 import TopNav from "@components/TopNav";
 import { GetStaticPropsContext } from "next";
 import NextLink from 'next/link';
+import Head from "next/head";
 
 import { theme } from "src/theme";
 
@@ -23,6 +24,9 @@ export default function Home({ continents }: HomeProps) {
 
   return (
     <>
+      <Head>
+        <title>Worldtrip</title>
+      </Head>
       <TopNav />
 
       <Header />

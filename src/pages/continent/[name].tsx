@@ -6,7 +6,7 @@ import { GetStaticPathsContext, GetStaticPathsResult, GetStaticPropsContext } fr
 import React from 'react';
 import { RiInformationLine } from 'react-icons/ri';
 import { useTranslations } from 'use-intl';
-
+import Head from "next/head";
 interface City {
   id: string;
   name: string;
@@ -33,6 +33,9 @@ const Continent: React.FC<ContinentProps> = ({continent}) => {
 
   return (
     <>
+      <Head>
+        <title>{`${continent.name} | Worldtrip`}</title>
+      </Head>
       <TopNav url="/"/>
 
       <Header title={continent.name} imageSrc={continent.imageURL}/>
