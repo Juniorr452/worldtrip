@@ -1,0 +1,26 @@
+{
+  "name": "Europe",
+  "description": "By convention, Europe is one of the seven continents in the world. Starting from the western Eurasian peninsula, it goes all the way to the Ural Mountains, the Ural River, the Caspian Sea, the Caucasus, and the Black Sea, where it borders Asia.",
+  "cities": {
+    "london": {
+      "name": "London",
+      "country": "United Kingdom"
+    },
+    "paris": {
+      "name": "Paris",
+      "country": "France"
+    },
+    "rome": {
+      "name": "Rome",
+      "country": "Italy"
+    },
+    "prague": {
+      "name": "Prague",
+      "country": "Czech Republic"
+    },
+    "amsterdam": {
+      "name": "Amsterdam",
+      "country": "Netherlands"
+    }
+  }
+}

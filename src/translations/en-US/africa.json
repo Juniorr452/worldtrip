@@ -1,0 +1,18 @@
+{
+  "name": "Africa",
+  "description": "Africa is the world's second-largest and second-most populous continent, after Asia in both cases. At about 30.3 million km² including adjacent islands, it covers 6% of Earth's total surface area and 20% of its land area.",
+  "cities": {
+    "johannesburg": {
+      "name": "Johannesburg",
+      "country": "South Africa"
+    },
+    "marrakech": {
+      "name": "Marrakech",
+      "country": "Morocco"
+    },
+    "hurghada": {
+      "name": "Hurghada",
+      "country": "Egypt"
+    }
+  }
+}

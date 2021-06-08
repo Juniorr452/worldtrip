@@ -20,8 +20,12 @@
       "name": "Europe",
       "description": "The old continent"
     },
-    "america": {
-      "name": "America",
+    "northamerica": {
+      "name": "North America",
+      "description": "The new world"
+    },
+    "southamerica": {
+      "name": "South America",
       "description": "The new world"
     },
     "africa": {

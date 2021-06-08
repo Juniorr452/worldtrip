@@ -1,0 +1,18 @@
+{
+  "name": "Amérique du Sud",
+  "description": "L'Amérique du Sud est bordée à l'ouest par l'océan Pacifique et au nord et à l'est par l'océan Atlantique, l'Amérique du Nord et la mer des Caraïbes se trouvant au nord-ouest. L'aspect culturel et ethnique du continent trouve son origine dans l'interaction des peuples indigènes avec les conquérants et les immigrants européens et, plus localement, avec les esclaves africains.",
+  "cities": {
+    "buenosaires": {
+      "name": "Buenos Aires",
+      "country": "Argentine"
+    },
+    "lima": {
+      "name": "Lima",
+      "country": "Pérou"
+    },
+    "riodejaneiro": {
+      "name": "Rio de Janeiro",
+      "country": "Brésil"
+    }
+  }
+}

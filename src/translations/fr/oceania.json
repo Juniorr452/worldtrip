@@ -1,0 +1,18 @@
+{
+  "name": "Océanie",
+  "description": "L'Océanie est une région géographique qui comprend l'Australasie, la Mélanésie, la Micronésie et la Polynésie. S'étendant sur les hémisphères oriental et occidental, l'Océanie a une superficie de 8 525 989 kilomètres carrés et une population de plus de 41 millions d'habitants.",
+  "cities": {
+    "sydney": {
+      "name": "Sídney",
+      "country": "Australie"
+    },
+    "melbourne": {
+      "name": "Melbourne",
+      "country": "Australie"
+    },
+    "auckland": {
+      "name": "Auckland",
+      "country": "Australie"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Europe",
+  "description": "L'Europe est, par convention, l'un des sept continents du monde. Constituant la péninsule occidentale de l'Eurasie, l'Europe est généralement séparée de l'Asie à l'est par la ligne de partage des eaux des monts Oural, le fleuve Oural, la mer Caspienne, le Caucase et la mer Noire au sud-est.",
+  "cities": {
+    "london": {
+      "name": "Londres",
+      "country": "Royaume-Uni"
+    },
+    "paris": {
+      "name": "Paris",
+      "country": "France"
+    },
+    "rome": {
+      "name": "Rome",
+      "country": "Italie"
+    },
+    "prague": {
+      "name": "Prague",
+      "country": "République tchèque"
+    },
+    "amsterdam": {
+      "name": "Amsterdam",
+      "country": "Pays-Bas"
+    }
+  }
+}

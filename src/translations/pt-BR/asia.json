@@ -1,0 +1,26 @@
+{
+  "name": "Ásia",
+  "description": "A Ásia é o maior e mais populoso continente da Terra, localizado principalmente nos Hemisférios Oriental e Setentrional. Compartilha a massa terrestre continental da Eurásia com o continente da Europa e a massa terrestre continental da Afro-Eurásia tanto com a Europa como com a África.",
+  "cities": {
+    "hongkong": {
+      "name": "Hong Kong",
+      "country": "China"
+    },
+    "bangkok": {
+      "name": "Bangkok",
+      "country": "Tailândia"
+    },
+    "macau": {
+      "name": "Macau",
+      "country": "China"
+    },
+    "singapore": {
+      "name": "Singapura",
+      "country": "Singapura"
+    },
+    "kualalumpur": {
+      "name": "Kuala Lumpur",
+      "country": "Malásia"
+    }
+  }
+}

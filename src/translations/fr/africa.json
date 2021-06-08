@@ -1,0 +1,18 @@
+{
+  "name": "Afrique",
+  "description": "L'Afrique est le deuxième continent le plus grand et le deuxième plus peuplé du monde, après l'Asie dans les deux cas. Avec environ 30,3 millions de km², y compris les îles adjacentes, elle couvre 6 % de la surface totale de la Terre et 20 % de sa superficie terrestre.",
+  "cities": {
+    "johannesburg": {
+      "name": "Johannesburg",
+      "country": "Afrique du Sud"
+    },
+    "marrakech": {
+      "name": "Marrakech",
+      "country": "Maroc"
+    },
+    "hurghada": {
+      "name": "Hurghada",
+      "country": "Égypte"
+    }
+  }
+}

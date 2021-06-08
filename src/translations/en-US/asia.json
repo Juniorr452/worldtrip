@@ -1,0 +1,26 @@
+{
+  "name": "Asia",
+  "description": "Asia is Earth's largest and most populous continent, located primarily in the Eastern and Northern Hemispheres. It shares the continental landmass of Eurasia with the continent of Europe and the continental landmass of Afro-Eurasia with both Europe and Africa.",
+  "cities": {
+    "hongkong": {
+      "name": "Hong Kong",
+      "country": "China"
+    },
+    "bangkok": {
+      "name": "Bangkok",
+      "country": "Thailand"
+    },
+    "macau": {
+      "name": "Macau",
+      "country": "China"
+    },
+    "singapore": {
+      "name": "Singapure",
+      "country": "Singapure"
+    },
+    "kualalumpur": {
+      "name": "Kuala Lumpur",
+      "country": "Malaysia"
+    }
+  }
+}

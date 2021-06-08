@@ -1,0 +1,26 @@
+{
+  "name": "América do Norte",
+  "description": "A América do Norte é um continente inteiramente dentro do Hemisfério Norte e quase todo dentro do Hemisfério Ocidental. É limitado ao norte pelo Oceano Ártico, ao leste pelo Oceano Atlântico, ao sudeste pela América do Sul e o Mar do Caribe, e ao oeste e ao sul pelo Oceano Pacífico.",
+  "cities": {
+    "newyork": {
+      "name": "Nova Iorque",
+      "country": "Estados Unidos"
+    },
+    "miami": {
+      "name": "Miami",
+      "country": "Estados Unidos"
+    },
+    "losangeles": {
+      "name": "Los Angeles",
+      "country": "Estados Unidos"
+    },
+    "lasvegas": {
+      "name": "Las Vegas",
+      "country": "Estados Unidos"
+    },
+    "orlando": {
+      "name": "Orlando",
+      "country": "Estados Unidos"
+    }
+  }
+}

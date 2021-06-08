@@ -2,19 +2,40 @@ import { Image } from '@chakra-ui/image';
 import { Box, Flex, Grid, Heading, Text } from '@chakra-ui/layout';
 import { Icon, Tooltip } from '@chakra-ui/react';
 import TopNav from '@components/TopNav';
-import { GetStaticPathsResult, GetStaticPropsContext } from 'next';
+import { GetStaticPathsContext, GetStaticPathsResult, GetStaticPropsContext } from 'next';
 import React from 'react';
 import { RiInformationLine } from 'react-icons/ri';
 import { useTranslations } from 'use-intl';
 
-const Continent: React.FC = () => {
+interface City {
+  id: string;
+  name: string;
+  country: string;
+  countryId: string;
+}
+interface Continent {
+  name: string;
+  imageURL: string;
+  description: string;
+  cities: City[];
+  info: {
+    cities: string;
+    countries: string;
+    languages: string;
+  };
+}
+interface ContinentProps {
+  continent: Continent;
+};
+
+const Continent: React.FC<ContinentProps> = ({continent}) => {
   const t = useTranslations('Continent');
 
   return (
     <>
       <TopNav url="/"/>
 
-      <Header />
+      <Header title={continent.name} imageSrc={continent.imageURL}/>
       
       <Flex
         mt={{base: "6", lg: "20"}}
@@ -25,7 +46,7 @@ const Continent: React.FC = () => {
         direction={{base: "column", lg: "row"}}
       >
         <Text color="gray.700" fontSize={["sm", "md", "xl"]} textAlign="justify">
-          A Europa é, por convenção, um dos seis continentes do mundo. Compreendendo a península ocidental da Eurásia, a Europa geralmente divide-se da Ásia a leste pela divisória de águas dos montes Urais, o rio Ural, o mar Cáspio, o Cáucaso, e o mar Negro a sudeste.
+          {continent.description}
         </Text>
         
         <Flex
@@ -37,41 +58,62 @@ const Continent: React.FC = () => {
           ml={{base: "auto", lg: "16"}}
           justify="space-between"
         >
-          <Info number="50" name={t('countries') as string} />
-          <Info number="60" name={t('languages') as string} />
-          <Info number="24" name={t('cities+100') as string} info={t('cities+100_info') as string}/>
+          <Info number={continent.info.countries} name={t('countries') as string} />
+          <Info number={continent.info.languages} name={t('languages') as string} />
+          <Info number={continent.info.cities} name={t('cities+100') as string} info={t('cities+100_info') as string}/>
         </Flex>
       </Flex>
 
-      <Cities />
+      <Cities cities={continent.cities} />
     </>
   )
 }
 
-export function getStaticPaths(): GetStaticPathsResult {
+export function getStaticPaths({ locales }: GetStaticPathsContext): GetStaticPathsResult {
+  const paths = [
+    {params: { name: "europe" }},
+    {params: { name: "northamerica" }},
+    {params: { name: "southamerica" }},
+    {params: { name: "africa" }},
+    {params: { name: "asia" }},
+    {params: { name: "oceania" }},
+  ];
+
   return {
-    paths: [],
-    fallback: 'blocking'
+    paths: paths.map(path => locales.map(locale => ({
+      ...path,
+      locale
+    }))).flat(),
+    fallback: false
   }
 }
 
-export function getStaticProps({locale}: GetStaticPropsContext) {
+export async function getStaticProps({ params, locale }: GetStaticPropsContext) {
+  const { name } = params;
+
+  const response = await fetch(`${process.env.API_URL}/continent/${name}?locale=${locale}`);
+  const continent = await response.json();
+
   return {
     props: {
+      continent,
       messages: require(`src/translations/${locale}/continent.json`)
     }
   }
 }
+interface HeaderProps {
+  title: string;
+  imageSrc: string;
+}
 
-const Header = () => (
+const Header: React.FC<HeaderProps> = ({title, imageSrc}) => (
   <Flex
     pos="relative"
     bg="rgba(0,0,0,0.25)"
 
     _before={{
       content: '""',
-      bgImage:
-        "url(https://www.francetvinfo.fr/pictures/8G0G2o4bIm8fEtKZgMaSMkAIE3Q/1200x1200/2019/05/03/phpeNwgZR.jpg)",
+      bgImage: `url(${imageSrc})`,
       bgSize: "cover",
       pos: "absolute",
       bgPos: "50%",
@@ -96,7 +138,9 @@ const Header = () => (
       mt={{base: "0", md: "auto"}}
       mb={{base: "0", md: "16"}}
     >
-      <Heading as="h1" h="fit-content" textAlign={{base: "center", md: "start"}} color="gray.50">Europa</Heading>
+      <Heading as="h1" h="fit-content" textAlign={{base: "center", md: "start"}} color="gray.50">
+        {title}
+      </Heading>
     </Box>
   </Flex>
 )
@@ -144,7 +188,11 @@ const Info: React.FC<InfoProps> = ({number, name, info}) => (
   </Flex>
 )
 
-const Cities = () => {
+interface CitiesProps {
+  cities: City[];
+}
+
+const Cities: React.FC<CitiesProps> = ({ cities }) => {
   const t = useTranslations('Cities');
 
   return (
@@ -152,45 +200,37 @@ const Cities = () => {
       <Text as="h2" fontSize="2xl" color="gray.500" fontWeight="medium">{t('cities+100')}</Text>
   
       <Grid templateColumns="repeat(auto-fit, minmax(256px, 1fr))" gap="5" mt="5">
-        <City />
-        <City />
-        <City />
-        <City />
-        <City />
-        <City />
-        <City />
+        {cities.map(city => (
+          <Box maxW="256px" mx="auto" key={city.id}>
+            <Box 
+              bg={`url(/img/cities/${city.id}.jpg)`}
+              bgPos="50%"
+              bgSize="cover"
+              w="256px" h="170px"
+            />
+
+            <Flex
+              borderRadius="0 0 4px 4px"
+              border="1px solid"
+              borderColor="brand.300"
+              borderTop="0"
+              pt="4"
+              pb="6"
+              px="6"
+              align="center"
+              justify="space-between"
+            >
+              <Box>
+                <Text color="gray.700" fontSize="large" fontWeight="bold">{city.name}</Text>
+                <Text color="gray.500" mt="3">{city.country}</Text>
+              </Box>
+              <Image boxSize="30px" src={`/img/flags/${city.countryId}.png`} borderRadius="full"/>
+            </Flex>
+          </Box>
+        ))}
       </Grid>
     </Box>
   )
 }
-
-const City: React.FC = () => (
-  <Box maxW="256px" mx="auto">
-    <Box 
-      bg="url(https://www.francetvinfo.fr/pictures/8G0G2o4bIm8fEtKZgMaSMkAIE3Q/1200x1200/2019/05/03/phpeNwgZR.jpg)" 
-      bgPos="50%"
-      bgSize="cover"
-      w="256px" h="170px"
-    />
-
-    <Flex
-      borderRadius="0 0 4px 4px"
-      border="1px solid"
-      borderColor="brand.300"
-      borderTop="0"
-      pt="4"
-      pb="6"
-      px="6"
-      align="center"
-      justify="space-between"
-    >
-      <Box>
-        <Text color="gray.700" fontSize="large" fontWeight="bold">Paris</Text>
-        <Text color="gray.500" mt="3">França</Text>
-      </Box>
-      <Image boxSize="30px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4GLYUhI4oQja0QFO7br6hLYGQ-5IKzeLCLQ&usqp=CAU" borderRadius="full"/>
-    </Flex>
-  </Box>
-)
 
 export default Continent;

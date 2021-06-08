@@ -10,7 +10,15 @@ import { theme } from "src/theme";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useTranslations } from "use-intl";
 
-export default function Home() {
+interface Continent {
+  id: string;
+  imageURL: string;
+}
+interface HomeProps {
+  continents: Continent[];
+}
+
+export default function Home({ continents }: HomeProps) {
   const t = useTranslations('Home');
 
   return (
@@ -36,14 +44,18 @@ export default function Home() {
         {t('choosecontinent')}
       </Text>
 
-      <Slide />
+      <Slide continents={continents}/>
     </>
   )
 }
 
-export function getStaticProps({locale}: GetStaticPropsContext) {
+export async function getStaticProps({locale}: GetStaticPropsContext) {
+  const response = await fetch(`${process.env.API_URL}/continent/`);
+  const continents = await response.json();
+
   return {
     props: {
+      continents,
       messages: require(`src/translations/${locale}/home.json`)
     }
   }
@@ -118,7 +130,11 @@ const Activity: React.FC<ActivityProps> = ({src, children}) => (
   </Flex>
 )
 
-const Slide = () => {
+interface SlideProps {
+  continents: Continent[];
+}
+
+const Slide: React.FC<SlideProps> = ({ continents }) => {
   const t = useTranslations('Slider');
 
   return (
@@ -151,29 +167,36 @@ const Slide = () => {
         pagination={{ clickable: true }}
         color="brand.500"
       >
-        <SwiperSlide>
-          <SlideItem/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideItem/>
-        </SwiperSlide>
-        <SwiperSlide>
-          <SlideItem/>
-        </SwiperSlide>
+        {continents.map(continent => {
+          const name = t(`${continent.id}.name`) as string;
+          const slogan = t(`${continent.id}.description`) as string;
+          
+          return (
+            <SwiperSlide key={continent.id}>
+              <SlideItem {...continent} name={name} slogan={slogan}/>
+            </SwiperSlide>
+          )
+        })}
       </Swiper>
     </Box>
   )
 }
 
-const SlideItem = () => (
+interface SlideItemProps {
+  id: string;
+  name: string;
+  slogan: string;
+  imageURL: string;
+}
+
+const SlideItem: React.FC<SlideItemProps> = ({ id, name, slogan, imageURL }) => (
   <Box
     pos="relative"
     bg="rgba(0,0,0,0.4)"
 
     _before={{
       content: '""',
-      bgImage:
-        "url(https://www.francetvinfo.fr/pictures/8G0G2o4bIm8fEtKZgMaSMkAIE3Q/1200x1200/2019/05/03/phpeNwgZR.jpg)",
+      bgImage: `url(${imageURL})`,
       bgSize: "cover",
       pos: "absolute",
       bgPos: "50%",
@@ -192,7 +215,7 @@ const SlideItem = () => (
     justifyContent="center"
     alignItems="center"
   >
-    <NextLink href={"/continent/europe"}>
+    <NextLink href={`/continent/${id}`}>
       <Link color="brand.500">
         <Text 
           as="h3"
@@ -200,7 +223,7 @@ const SlideItem = () => (
           fontWeight="bold"
           fontSize={{base: "2xl", md: "xxx-large"}}
         >
-          Europa
+          {name}
         </Text>
 
         <Text
@@ -209,7 +232,7 @@ const SlideItem = () => (
           fontSize={{base: "sm", md: "2xl"}}
           mt="3"
         >
-          O continente mais antigo
+          {slogan}
         </Text>
       </Link>
     </NextLink>

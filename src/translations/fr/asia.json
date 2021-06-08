@@ -1,0 +1,26 @@
+{
+  "name": "Asie",
+  "description": "L'Asie est le continent le plus vaste et le plus peuplé de la Terre, situé principalement dans les hémisphères Est et Nord. Elle partage la masse continentale de l'Eurasie avec le continent européen et la masse continentale de l'Afro-Eurasie avec l'Europe et l'Afrique.",
+  "cities": {
+    "hongkong": {
+      "name": "Hong Kong",
+      "country": "Chine"
+    },
+    "bangkok": {
+      "name": "Bangkok",
+      "country": "Thaïlande"
+    },
+    "macau": {
+      "name": "Macau",
+      "country": "Chine"
+    },
+    "singapore": {
+      "name": "Singapour",
+      "country": "Singapour"
+    },
+    "kualalumpur": {
+      "name": "Kuala Lumpur",
+      "country": "Malaisie"
+    }
+  }
+}

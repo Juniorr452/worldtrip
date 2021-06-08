@@ -1,0 +1,26 @@
+{
+  "name": "Amérique du Nord",
+  "description": "L'Amérique du Nord est un continent entièrement situé dans l'hémisphère nord et presque entièrement dans l'hémisphère ouest. Il est bordé au nord par l'océan Arctique, à l'est par l'océan Atlantique, au sud-est par l'Amérique du Sud et la mer des Caraïbes, et à l'ouest et au sud par l'océan Pacifique.",
+  "cities": {
+    "newyork": {
+      "name": "New York",
+      "country": "États-Unis"
+    },
+    "miami": {
+      "name": "Miami",
+      "country": "États-Unis"
+    },
+    "losangeles": {
+      "name": "Los Angeles",
+      "country": "États-Unis"
+    },
+    "lasvegas": {
+      "name": "Las Vegas",
+      "country": "États-Unis"
+    },
+    "orlando": {
+      "name": "Orlando",
+      "country": "États-Unis"
+    }
+  }
+}
