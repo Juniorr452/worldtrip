@@ -16,10 +16,11 @@ interface Continent {
   imageURL: string;
 }
 interface HomeProps {
+  loaded: boolean;
   continents: Continent[];
 }
 
-export default function Home({ continents }: HomeProps) {
+export default function Home({ continents, loaded }: HomeProps) {
   const t = useTranslations('Home');
 
   return (
@@ -29,7 +30,7 @@ export default function Home({ continents }: HomeProps) {
       </Head>
       <TopNav />
 
-      <IndexHeader />
+      <IndexHeader loaded={loaded}/>
       <IndexActivities />
 
       <Divider w="60px" h="2px" mx="auto" bg="gray.700"/>

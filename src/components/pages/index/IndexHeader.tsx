@@ -1,10 +1,30 @@
 import { useTranslations } from "next-intl";
 
-import { Image } from "@chakra-ui/image";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 
-export function IndexHeader() {
+import { MotionBox, MotionImage } from "@components/motion";
+import { useAnimation } from "framer-motion";
+
+interface IndexHeaderProps {
+  loaded: boolean;
+}
+
+export function IndexHeader({ loaded }) {
   const t = useTranslations('Header');
+  const headingControls = useAnimation();
+  const airplaneControls = useAnimation();
+
+  if(loaded) {
+    headingControls.start('visible', {
+      delay: .5,
+      duration: 1
+    });
+
+    airplaneControls.start('visible', {
+      delay: 1.5,
+      duration: 1
+    });
+  }
   
   return (
     <Box
@@ -12,7 +32,14 @@ export function IndexHeader() {
       bgSize="cover"
     >
       <Flex pos="relative" maxW="1160px" mx="auto" px={["6", "8"]} py={{base: "6", md: "80px"}} justify="space-between">
-        <Box>
+        <MotionBox
+          variants={{
+            hidden: {opacity: 0, y: 50},
+            visible: {opacity: 1, y: 0}
+          }}
+          initial="hidden"
+          animate={headingControls}
+        >
           <Text
             as="h1"
             fontWeight={{base: "bold", md: "medium"}}
@@ -31,9 +58,21 @@ export function IndexHeader() {
           >
             {t('description')}
           </Text>
-        </Box>
+        </MotionBox>
   
-        <Image pos="absolute" w="410px" right="16px" src="/img/airplane.svg" d={{base: "none", lg: "block"}}/>
+        <MotionImage 
+          variants={{
+            hidden: {opacity: 0, x: 70, y: 50},
+            visible: {opacity: 1, x: 0, y: 0, transition: { duration: 1, delay: .8 }}
+          }}
+          initial="hidden"
+          animate={airplaneControls}
+          pos="absolute" 
+          w="410px" 
+          right="16px" 
+          src="/img/airplane.svg" 
+          d={{base: "none", lg: "block"}}
+        />
       </Flex>
     </Box>
   )
