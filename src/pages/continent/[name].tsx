@@ -8,6 +8,7 @@ import TopNav from '@components/TopNav';
 import { ContinentHeader } from '@components/pages/continent/ContinentHeader';
 import { ContinentInfo } from '@components/pages/continent/ContinentInfo';
 import { ContinentCities } from '@components/pages/continent/ContinentCities';
+import Footer from "@components/Footer";
 
 import { continentsData } from "src/continents";
 interface City {
@@ -71,6 +72,8 @@ const Continent: React.FC<ContinentProps> = ({continent}) => {
       </Flex>
 
       <ContinentCities cities={continent.cities} />
+
+      <Footer />
     </>
   )
 }
@@ -114,7 +117,10 @@ export async function getStaticProps({ params, locale }: GetStaticPropsContext) 
   return {
     props: {
       continent,
-      messages: require(`src/translations/${locale}/continent.json`)
+      messages: {
+        ...require(`src/translations/${locale}/global.json`),
+        ...require(`src/translations/${locale}/continent.json`),
+      }, 
     }
   }
 }

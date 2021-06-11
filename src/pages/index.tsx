@@ -9,6 +9,7 @@ import TopNav from "@components/TopNav";
 import { IndexHeader } from "@components/pages/index/IndexHeader";
 import { IndexActivities } from "@components/pages/index/IndexActivities";
 import { IndexSlide } from "@components/pages/index/IndexSlider";
+import Footer from "@components/Footer";
 
 import { continentsData } from '../continents';
 interface Continent {
@@ -50,6 +51,8 @@ export default function Home({ continents, loaded }: HomeProps) {
       </Text>
 
       <IndexSlide continents={continents}/>
+
+      <Footer />
     </>
   )
 }
@@ -63,7 +66,10 @@ export async function getStaticProps({locale}: GetStaticPropsContext) {
   return {
     props: {
       continents,
-      messages: require(`src/translations/${locale}/home.json`)
+      messages: {
+        ...require(`src/translations/${locale}/global.json`),
+        ...require(`src/translations/${locale}/home.json`),
+      } 
     }
   }
 }
