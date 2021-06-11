@@ -19,13 +19,12 @@ export const ContinentCities: React.FC<ContinentCitiesProps> = ({ cities }) => {
   const t = useTranslations('Cities');
 
   return (
+    <FadeInWhenVisible
+      visible={{y: 0}}
+      hidden={{y: 100}}
+    >  
     <Box mt={{base: "6", lg: "20"}} mb={{base: "10", md: "20"}} mx="auto" px={["6", "8"]} maxW="1160">
       <Text as="h2" fontSize="2xl" color="gray.500" fontWeight="medium">{t('cities+100')}</Text>
-
-      <FadeInWhenVisible
-        visible={{y: 0}}
-        hidden={{y: 100}}
-      >  
         <Grid templateColumns="repeat(auto-fit, minmax(256px, 1fr))" gap="5" mt="5">
           {cities.map(city => (
             <Box maxW="256px" mx="auto" key={city.id}>
@@ -56,7 +55,7 @@ export const ContinentCities: React.FC<ContinentCitiesProps> = ({ cities }) => {
             </Box>
           ))}
         </Grid>
-      </FadeInWhenVisible>
-    </Box>
+      </Box>  
+    </FadeInWhenVisible>
   )
 }
