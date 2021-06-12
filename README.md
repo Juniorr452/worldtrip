@@ -10,6 +10,10 @@
 
 ## About  
 
+<p align="center">
+  <img src="./.github/worldtrip.gif"/>
+</p>
+
 Worldtrip was made as a course project for Rocketseat's ReactJS course. The goal was to implement a 2-page layout using NextJS and Chakra-UI. You can find the original layout [here](https://www.figma.com/file/roePgjiXKaMdAkaGmuwOZV/Worldtrip).
 
 As I wanted to experiment more with NextJS, I also added support for multiple languages and animations.
@@ -48,4 +52,4 @@ Then open [http://localhost:3000](http://localhost:3000) in your browser to see 
 
 ## Credits
 
-See ![CREDITS.md](./CREDITS.md)
+See [CREDITS.md](./CREDITS.md)
